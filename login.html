@@ -1,0 +1,125 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <title>Live Blog</title>
+    <style>
+        .container {
+            max-width: 500px;
+            padding-top: 30px;
+        }
+        .container-fluid {
+            max-width: 800px;
+            text-align: center;
+        }
+        .logo-space {
+            text-align: center;
+            padding: 50px 0;
+            background-color: cyan;
+            margin: 10px 0;
+        }
+        .live-posts {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .live-posts > li {
+            padding: 10px;
+            background-color: #d8d8d8;
+            margin-bottom: 10px;
+        }
+        .power {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999;
+        }
+        input[type=text], input[type=password] {
+            background: #DFF3FE;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+
+        .message {
+            color: crimson;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <form action="/app_masters" method="POST" id="post-stuff">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="text-center mb-5">Mapp管理画面</h2>
+                <img class="mt-5 mb-5" src="./assets/imgs/logo.png">
+            </div>
+            <label for="userId" class="grey-text">ログインID</label>
+            <input type="text" id="userId" class="form-control"/>
+            <br/>
+            <label for="userPassword" class="grey-text">ログインパスワード</label>
+            <input type="password" id="userPassword" class="form-control" v-model="password"/>
+            <br/>
+            <div class="checkbox">
+                <label><input id="isSaveLoginInfo" type="checkbox" value="">&nbsp;ログイン情報を保存する</label>
+            </div>
+        </div>
+
+        <div class="container-fluid mt-5">
+            <div class="message d-none">ログインID、ログインパスワードのいずれか 、もしくは両方が間違っています。<br/>ご確認の上、再度お試しください。</div>
+
+            <div class="text-center mt-4">
+                <button class="btn btn-indigo btn-primary" type="button" onclick="onLoad()">ログイン</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<!-- <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<script src="assets/config.js"></script>
+
+
+<script>
+
+function onLoad() {
+
+    // $.ajax({
+    //     url: "http://localhost:8000/ping",
+    //     dataType: "json",
+    // }).done(function (data) {
+    //     debugger;
+    //     alert(data);
+    //     window.location.href = 'layout.html'
+    // });
+
+    // axios.defaults.headers.common['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBWZXIiOiIwLjAuMCIsImV4cCI6NDcyNjM4OTEyMiwibG9jYWxlIjoiIiwibWFzdGVyVmVyIjoiIiwicGxhdGZvcm0iOiIiLCJwbGF0Zm9ybVZlciI6IiIsInVzZXJJZCI6IiJ9.QIZbmB5_9Xlap_gDhjETfMI6EAmR15yBtIQkWFWJkrg'
+    axios.get(hostName + "ping").then(res => {
+        alert(res.data)
+        document.cookie = "email=bagiadiban@loncon.com; pass=123";
+        window.location.href = 'layout.html'
+    }).catch((error) => {
+        this.hasError = true
+    })
+}
+
+</script>
+</body>
+<footer class="footer">
+    <span>©Copyright</span>
+</footer>
+</html>
